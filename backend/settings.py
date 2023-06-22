@@ -10,31 +10,31 @@ from django.core.management.utils import get_random_secret_key
 # import dj_database_url
 # Other settings...
 
-myenv_path = '/myenv'  # Replace with the actual path to your myenv file
-load_dotenv(myenv_path)
+# myenv_path = '/myenv'  # Replace with the actual path to your myenv file
+# load_dotenv(myenv_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-myenv_path = '/BackupDigiShop/myenv'  # Replace with the actual path to your myenv file
+# myenv_path = '/BackupDigiShop/myenv'  # Replace with the actual path to your myenv file
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-42#%@ebqfzx%1$%)65pxl)+j6o9at&mh@bs-cm-g%v0b860-r6'
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = 'django-insecure-42#%@ebqfzx%1$%)65pxl)+j6o9at&mh@bs-cm-g%v0b860-r6'
+# SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.getenv("DEBUG", "False") == "True"
-for key, value in os.environ.items():
-    print(f"{key}: {value}")
+DEBUG = True
+# DEBUG = os.getenv("DEBUG", "False") == "True"
+# for key, value in os.environ.items():
+#     print(f"{key}: {value}")
 
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1, localhost").split(",")
+#ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1, localhost").split(",")
 
 
 # Application definition
@@ -166,12 +166,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # For Server
 # DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
@@ -232,22 +232,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 MEDIA_URL='/images/'
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
 
 
 
-STATICFILES_DIRS=[
-    BASE_DIR / 'static'
+# STATICFILES_DIRS=[
+#     BASE_DIR / 'static'
 
-]
+# ]
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'todayshop/build/static'),
 
 # )
 
-MEDIA_ROOT='static/images'
+# MEDIA_ROOT='static/images'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
