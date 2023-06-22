@@ -7,20 +7,9 @@ from urllib.parse import urlparse
 import sys
 from dotenv import load_dotenv
 from django.core.management.utils import get_random_secret_key
-# import dj_database_url
-# Other settings...
 
-# myenv_path = '/myenv'  # Replace with the actual path to your myenv file
-# load_dotenv(myenv_path)
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# myenv_path = '/BackupDigiShop/myenv'  # Replace with the actual path to your myenv file
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-42#%@ebqfzx%1$%)65pxl)+j6o9at&mh@bs-cm-g%v0b860-r6'
@@ -56,19 +45,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-#  'django.contrib.sites',
-    # 'dj_rest_auth',
-    # 'dj_rest_auth.registration',
-    # 'rest_framework.authtoken',
+
     'socialauth',
 ]
 REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES':[
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ],
+    
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ],
 }
 
@@ -77,21 +60,7 @@ REST_FRAMEWORK = {
 
 
 
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
-
-    # 'django.middleware.security.SecurityMiddleware',
-
-# MIDDLEWARE = [
-#     'corsheaders.middleware.CorsMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.security.SecurityMiddleware',
-#     'django.contrib.sessions.middleware.SessionMiddleware',
-#     'django.middleware.common.CommonMiddleware',
-#     'django.middleware.csrf.CsrfViewMiddleware',
-#     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#     'django.contrib.messages.middleware.MessageMiddleware',
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-# ]
+   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -158,45 +127,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# ]
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# For Server
-# DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-
-# if DEVELOPMENT_MODE is True:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'cdotdb',
-#             'USER': 'postgres',
-#             'PASSWORD': '1234',
-#             'HOST': 'localhost', 
-#         }
-#     }
-# elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-#     if os.getenv("DATABASE_URL", None) is None:
-#         raise Exception("DATABASE_URL environment variable not defined")
-#     DATABASES = {
-#         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-#     }
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -239,18 +177,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 
 
-# STATICFILES_DIRS=[
-#     BASE_DIR / 'static'
-
-# ]
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'todayshop/build/static'),
-
-# )
-
-# MEDIA_ROOT='static/images'
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
